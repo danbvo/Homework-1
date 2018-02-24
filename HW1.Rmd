@@ -133,16 +133,16 @@ corrplot(correl, method="color")
 # 8) Principal Components Analysis
 
 ```{r}
-qdat1 <- prcomp(qdat, scale. = TRUE)
+qdat1 <- princomp(qdat, cor = TRUE)
 eigenvalues <- qdat1$sdev^2
 eigenvalues
-names(eigenvalues)
-??proportion
+pror_qdat <- eigenvalues/sum(eigenvalues)
+data.frame(pror_qdat)
 
-qdat2 <- princomp(qdat, cor = TRUE)
-qdat2$loadings
-names(qdat2)
+qdat1$loadings
+biplot(qdat1, scale = 0)
 
+#Comment: Based on the graph, we see peak_rpm and compression_ratio are the two components that have the most variability. 
 
 ```
 
