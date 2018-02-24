@@ -1,0 +1,23 @@
+---
+title: "hw01-daniel-vo.Rmd"
+author: "Daniel Vo"
+date: "2/21/2018"
+output: github_document
+---
+# 1) Data Dictionary
+# 2) Data Import
+```{r}
+library("ggplot2")
+library("dplyr")
+uci <- "https://archive.ics.uci.edu/ml/machine-learning-databases/autos/imports-85.data"
+download.file(
+  url = uci, 
+  destfile = "imports-85.data")
+
+columnname <- c("symboling", "normalized_loss", "make", "fuel_type", "aspiration", "number_of_doors", 'body_style', 'drive_wheels', 'engine_location', 'wheel_base', 'length' , 'width', 'height' , "curb_weight", 'engine_type', 'num_of_cylinders', 'engine_system', 'fuel_system', 'bore', ' stroke' , 'compression_ratio', 'horse_power', 'peak_rpm', 'city_mpg', 'highway_mpg', 'price')
+dt <- read.csv(file="~/imports-85.data", header = FALSE, col.names = columnname, stringsAsFactors = FALSE, na.strings = "")
+dt$horse_power <- as.integer(as.character(dt$horse_power))
+dt$peak_rpm <- as.integer(as.character(dt$peak_rpm))
+dt$price <- as.numeric(as.character(dt$price))
+str(dt)
+```
